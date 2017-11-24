@@ -17,3 +17,4 @@ func _process( delta ):
 	if( fps_time >= 1 ):
 		set_text( "fps: %d" % [fps_amount] )
 		fps_time = 0
+		fps_amount = 0
