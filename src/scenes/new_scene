@@ -6,6 +6,11 @@ if [ "$1" == "" ]
 then
 	echo -e -n "New scene name? "
 	read -e scene_name
+elif [ "$1" == "-l" ]
+then
+	echo "directory structure: "
+	tree -L 1
+	exit
 elif [ "$1" == "-d" ]
 then
 	echo -e -n "WARNING-- Are you sure you want to delete scene $2? "
@@ -14,12 +19,16 @@ then
 	then
 		rm -r "$2"
 		echo "new_directory structure: "
-		tree
+		tree -L 1
 		exit
 	else
 		echo "Canceling..."
 		exit
 	fi
+elif [ "$1" == "-h" ] || [ "$1" == "-help" ] || [ "$1" == "--help" ]
+then
+	echo -e -n "Creates a new scene--\n[no args] - prompts a name to create a scene or uses the first argument as the name for a scene\n-d - deletes the specified scene\n-h - prints this help menu\n-l - lists the scenes\n"
+	exit
 else
 	scene_name="$1"
 fi
@@ -32,4 +41,4 @@ echo -e -n "[gd_scene format=1]\n\n" > "$scene_name/$scene_name.tscn"
 echo -e -n "[node name=\"$scene_name\" type=\"Node2D\"]\n\n" >> "$scene_name/$scene_name.tscn"
 echo "done"
 echo "new directory structure: "
-tree
+tree -L 1

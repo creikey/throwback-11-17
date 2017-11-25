@@ -1,0 +1,4 @@
+[gd_scene format=1]
+
+[node name="credits" type="Node2D"]
+
